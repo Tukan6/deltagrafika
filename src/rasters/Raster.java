@@ -1,64 +1,58 @@
 package rasters;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
+/**
+ * Rozhraní pro rastr (plátno) pro kreslení pixelů
+ */
 public interface Raster {
 
     /**
-     * Clear canvas
+     * Vymaže plátno (vyplní nastavenou barvou)
      */
     void clear();
 
     /**
-     * Set clear color
+     * Nastaví barvu používanou pro mazání plátna
      *
-     * @param color
-     *            clear color
+     * @param clearColor barva (RGB formát)
      */
-    void setClearColor(int color);
+    void setClearColor(int clearColor);
+    
+    /**
+     * Vykreslí rastr do zadaného grafického kontextu
+     * 
+     * @param graphics grafický kontext pro vykreslení
+     */
+    void repaint(Graphics graphics);
 
     /**
-     * Get horizontal size
+     * Získá barvu pixelu na zadaných souřadnicích
      *
-     * @return width
-     */
-    int getWidth();
-
-    /**
-     * Get vertical size
-     *
-     * @return height
-     */
-    int getHeight();
-
-    /**
-     * Get pixel color at [x,y] position
-     *
-     * @param x
-     *            horizontal coordinate
-     * @param y
-     *            vertical coordinate
-     * @return    pixel color
+     * @param x x-ová souřadnice
+     * @param y y-ová souřadnice
+     * @return barva pixelu (RGB formát)
      */
     int getPixel(int x, int y);
 
     /**
-     * Set pixel color at [x,y] position
+     * Nastaví barvu pixelu na zadaných souřadnicích
      *
-     * @param x
-     *            horizontal coordinate
-     * @param y
-     *            vertical coordinate
-     * @param color
-     *            pixel color
+     * @param x x-ová souřadnice
+     * @param y y-ová souřadnice
+     * @param color barva pixelu (RGB formát)
      */
     void setPixel(int x, int y, int color);
 
-    Graphics getGraphics();
-
-    void repaint(Graphics graphics);
-
-    BufferedImage getImg();
-
+    /**
+     * Vrací šířku rastru v pixelech
+     *
+     * @return šířka rastru
+     */
+    int getWidth();    /**
+     * Vrací výšku rastru v pixelech
+     *
+     * @return výška rastru
+     */
+    int getHeight();
 }
